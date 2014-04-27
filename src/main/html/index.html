@@ -26,19 +26,16 @@
     <br/>
     <h2>Current Activities</h2>
     <ul>
-        <ul>
-            <li ng-repeat='cat in state.categories | filter:{active:true}'><b>{{cat.name}}</b> - Elapsed Time: {{PrintElapsedTime(cat.startTime)}} <button ng-click='stopEvent(cat)'>Stop</button></li>
-        </ul>
+        <li ng-repeat='cat in state.categories | filter:{active:true}'><b>{{cat.name}}</b> - Elapsed Time: {{PrintElapsedTime(cat.startTime)}} <button ng-click='stopEvent(cat)'>Stop</button></li>
     </ul>
 
     <br/>
     <br/>
     <h2>Total Times</h2>
+    
+    <b>Total Time</b> - {{PrintTime(state.totalTime)}}
     <ul>
-        <b>Total Time</b> - {{PrintTime(state.totalTime)}}
-        <ul>
-            <li ng-repeat='cat in state.categories'><b>{{cat.name}}</b> - {{PrintTime(cat.totalTime)}} ({{cat.totalTime/state.totalTime*100}}%)</li>
-        </ul>
+        <li ng-repeat='cat in state.categories'><b>{{cat.name}}</b> - {{PrintTime(cat.totalTime)}} ({{cat.totalTime/state.totalTime*100}}%)</li>
     </ul>
 
 </div>
