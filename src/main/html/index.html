@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<head>
+    <title>Time Tagger</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js" type="text/javascript"></script>
+    <script src="helper.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
+    <script src="maincontroller.js" type="text/javascript"></script>
+</head>
+<body>
+<div id='content' ng-app='MyTutorialApp' ng-controller='MainController'>
+
+    <h2>Start new Activity</h2>
+    <select ng-model='selectedCategory' ng-options='obj.name for obj in state.categories'></select>
+
+    <button ng-click='startEvent()'>Start</button>
+    <input type='text' ng-model='inputRename' ng-show='renaming == true' />
+    <button ng-click='renameEvent()'>Rename</button>
+    <button ng-click='deleteEvent()'>Delete</button>
+    <input type='text' ng-model='inputName' ng-show='adding == true' />
+    <button ng-click='addEvent()'>Add New</button>
+
+    <br/>
+    <br/>
+    <br/>
+    <h2>Current Activities</h2>
+    <ul>
+        <ul>
+            <li ng-repeat='cat in state.categories | filter:{active:true}'><b>{{cat.name}}</b> - Elapsed Time: {{PrintElapsedTime(cat.startTime)}} <button ng-click='stopEvent(cat)'>Stop</button></li>
+        </ul>
+    </ul>
+
+    <br/>
+    <br/>
+    <h2>Total Times</h2>
+    <ul>
+        <b>Total Time</b> - {{PrintTime(state.totalTime)}}
+        <ul>
+            <li ng-repeat='cat in state.categories'><b>{{cat.name}}</b> - {{PrintTime(cat.totalTime)}} ({{cat.totalTime/state.totalTime*100}}%)</li>
+        </ul>
+    </ul>
+
+</div>
+</body>
+</html>
